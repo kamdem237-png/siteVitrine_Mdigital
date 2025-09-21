@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agence de marketing digital : SEO, publicités, réseaux sociaux, création de contenu et email marketing.">
+    <title>Marketing Digital — Agence</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#">MDigital</a>
+            <button class="nav-toggle" aria-label="Ouvrir le menu" aria-controls="mobileNav" aria-expanded="false">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </button>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#pricing">Tarifs</a></li>
+                    <li><a href="#testimonials">Témoignages</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="header-sentinel" aria-hidden="true"></div>
+
+    <!-- navigation mobile off-canvas et superposition (overlay) -->
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true" tabindex="-1">
+        <button class="mobile-nav-close" aria-label="Fermer le menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </button>
+        <ul class="mobile-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#pricing">Tarifs</a></li>
+            <li><a href="#testimonials">Témoignages</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Boostez votre visibilité en ligne</h1>
+                    <p>Stratégies personnalisées en SEO, publicité et réseaux sociaux pour attirer des clients qualifiés.</p>
+                    <a class="btn primary" href="#contact">Demander un audit gratuit</a>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <!-- Illustration simple en CSS ou image -->
+                    <div class="mock-dashboard">
+                        <div class="stat">+120%<span>Trafic</span></div>
+                        <div class="stat">+85%<span>Leads</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2>Nos services</h2>
+                <p class="lead">Des prestations complètes pour couvrir tous les besoins digitaux de votre entreprise.</p>
+                <div class="cards">
+                    <article class="card">
+                        <h3>SEO & Content</h3>
+                        <p>Audit SEO, optimisation on-page, netlinking et création de contenu optimisé pour le référencement.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Publicité en ligne</h3>
+                        <p>Campagnes Google Ads & Meta Ads : acquisition rapide et ROI mesurable.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Marketing Social</h3>
+                        <p>Stratégie de contenu, community management et publicités sociales ciblées.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Email & Automatisation</h3>
+                        <p>Sequencage d'emails, lead nurturing et automatisations pour fidéliser vos prospects.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section alt">
+            <div class="container">
+                <h2>À propos</h2>
+                <div class="about-grid">
+                    <p>Nous sommes une agence à taille humaine spécialisée en marketing digital. Nous aimons les stratégies mesurables et la créativité utile. Chaque action est guidée par des données et des objectifs clairs.</p>
+                    <ul>
+                        <li>Expertise en SEO, Ads et contenu</li>
+                        <li>Approche transparente et rapports clairs</li>
+                        <li>Projets sur-mesure, adaptés à votre budget</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="section">
+            <div class="container">
+                <h2>Tarifs</h2>
+                <div class="pricing-grid">
+                    <div class="price">
+                        <h3>Starter</h3>
+                        <p class="price-value">500 FCFA / mois</p>
+                        <ul>
+                            <li style="list-style: none;">Audit initial</li>
+                            <li style="list-style: none;">Optimisations de base</li>
+                            <li style="list-style: none;">Rapport mensuel</li>
+                        </ul>
+                        <a class="btn" href="#contact">Choisir</a>
+                    </div>
+                    <div class="price featured">
+                        <h3>Pro</h3>
+                        <p class="price-value">1200 FCFA / mois</p>
+                        <ul>
+                            <li style="list-style: none;">SEO complet</li>
+                            <li style="list-style: none;">Campagnes Ads</li>
+                            <li style="list-style: none;">Création de contenu</li>
+                        </ul>
+                        <a class="btn primary" href="#contact">Choisir</a>
+                    </div>
+                    <div class="price">
+                        <h3>Sur-mesure</h3>
+                        <p class="price-value">Contactez-nous</p>
+                        <ul>
+                            <li style="list-style: none;">Solution personnalisée</li>
+                            <li style="list-style: none;">Reporting avancé</li>
+                            <li style="list-style: none;">Support dédié</li>
+                        </ul>
+                        <a class="btn" href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section alt">
+            <div class="container">
+                <h2>Témoignages</h2>
+                <div class="testimonials" data-index="0">
+                    <blockquote class="testimonial">"Grâce à MDigital nous avons doublé nos ventes en 6 mois." <cite>— Claire, boutique e-commerce</cite></blockquote>
+                    <blockquote class="testimonial">"Equipe très réactive et rapports clairs." <cite>— Paul, SaaS</cite></blockquote>
+                    <blockquote class="testimonial">"Campagnes Ads rentables et bien ciblées." <cite>— Karim, services B2B</cite></blockquote>
+                    <div class="test-controls">
+                        <button class="btn small" data-prev aria-label="Précédent">‹</button>
+                        <button class="btn small" data-next aria-label="Suivant">›</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <h2>Contactez-nous</h2>
+                <p class="lead">Remplissez ce formulaire pour recevoir un audit gratuit ou une proposition sur-mesure.</p>
+                <div class="contact-grid">
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="row">
+                            <label>Nom
+                                <input type="text" name="name" id="name" required minlength="2">
+                            </label>
+                            <label>Email
+                                <input type="email" name="email" id="email" required>
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <label>Téléphone
+                                <input type="tel" name="phone" id="phone" placeholder="+33 6 12 34 56 78">
+                            </label>
+                            <label>Société
+                                <input type="text" name="company" id="company">
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <label>Sujet
+                                <input type="text" name="subject" id="subject" placeholder="Ex: Audit SEO, Campagne Ads...">
+                            </label>
+                            <label>Budget estimé
+                                <select name="budget" id="budget" aria-label="Budget estimé">
+                                    <option value="">Sélectionnez</option>
+                                    <option value="<500">&lt; 500 FCFA</option>
+                                    <option value="500-1500">500 FCFA - 1500 FCFA</option>
+                                    <option value=">1500">&gt; 1500 FCFA</option>
+                                </select>
+                            </label>
+                        </div>
+
+
+                        <label>Message
+                            <textarea name="message" id="message" rows="5" required></textarea>
+                        </label>
+                        <div class="form-actions">
+                            <button type="submit" class="btn primary">Envoyer</button>
+                            <button type="reset" class="btn">Réinitialiser</button>
+                        </div>
+                        <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <p>© <span id="year"></span> MDigital — Tous droits réservés</p>
+                <nav>
+                    <ul>
+                        <li><a href="#privacy">Politique de confidentialité</a></li>
+                        <li><a href="#legal">Mentions légales</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer-contact-list">
+                <h4>Nos coordonnées</h4>
+                <p><strong>Email:</strong> <a href="mailto:contact@mdigital.example">contact@mdigital.example</a></p>
+                <p><strong>Téléphone:</strong> <a href="tel:+237675252550">+237 675 252 550 </a></p>
+                <p><strong>Adresse:</strong> Cours E-commerce Rue de IUT de DOUALA</p>
+                <p><strong>Support:</strong> <a href="mailto:support@mdigital.example">support@mdigital.example</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="menuStatus" class="sr-only" aria-live="polite"></div>
+    <!-- bouton rapide pour navigation quand header n'est pas visible -->
+    <button class="quick-nav-btn" aria-label="Aller en haut et ouvrir le menu" aria-controls="mobileNav" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 6l-6 6h12l-6-6z" fill="currentColor" />
+        </svg>
+        <span class="sr-only">Aller en haut et ouvrir le menu</span>
+    </button>
+    <script src="js/main.js"></script>
+</body>
+</html>
