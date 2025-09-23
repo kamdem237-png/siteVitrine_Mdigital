@@ -20,24 +20,37 @@ var navOverlay = document.querySelector('.nav-overlay');
 var firstMobileLink = mobileNav ? mobileNav.querySelector('a') : null;
 var lastTrigger = null; // élément ayant déclenché l'ouverture (pour restaurer le focus)
 // utilitaires pour piéger le focus (focus trap)
-function getFocusableElements(container){
-    if(!container) return [];
+function getFocusableElements(container) {
+    if (!container) return [];
     return Array.prototype.slice.call(container.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'));
 }
-function trapFocus(container){
+
+function trapFocus(container) {
     var focusable = getFocusableElements(container);
-    if(!focusable.length) return;
-    var first = focusable[0], last = focusable[focusable.length-1];
-    function keyHandler(e){
-        if(e.key !== 'Tab') return;
-        if(e.shiftKey){ if(document.activeElement === first){ e.preventDefault(); last.focus(); } }
-        else { if(document.activeElement === last){ e.preventDefault(); first.focus(); } }
+    if (!focusable.length) return;
+    var first = focusable[0],
+        last = focusable[focusable.length - 1];
+
+    function keyHandler(e) {
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey) {
+            if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
     }
     container.__focusHandler = keyHandler;
     container.addEventListener('keydown', keyHandler);
 }
-function releaseFocus(container){
-    if(!container || !container.__focusHandler) return;
+
+function releaseFocus(container) {
+    if (!container || !container.__focusHandler) return;
     container.removeEventListener('keydown', container.__focusHandler);
     container.__focusHandler = null;
 }
@@ -62,11 +75,16 @@ if (boutonMenu && monMenu) {
             // trap focus inside menu
             trapFocus(mobileNav);
             // announce to screen readers
-            if(menuStatus) menuStatus.textContent = 'Menu ouvert';
+            if (menuStatus) menuStatus.textContent = 'Menu ouvert';
         } else {
             // fallback : bascule l'affichage de la navigation principale
-            if (monMenu.style.display === 'block') { monMenu.style.display = ''; boutonMenu.setAttribute('aria-expanded', 'false'); }
-            else { monMenu.style.display = 'block'; boutonMenu.setAttribute('aria-expanded', 'true'); }
+            if (monMenu.style.display === 'block') {
+                monMenu.style.display = '';
+                boutonMenu.setAttribute('aria-expanded', 'false');
+            } else {
+                monMenu.style.display = 'block';
+                boutonMenu.setAttribute('aria-expanded', 'true');
+            }
         }
     });
 }
@@ -76,69 +94,95 @@ if (mobileNavClose && mobileNav) mobileNavClose.addEventListener('click', closeM
 if (navOverlay) navOverlay.addEventListener('click', closeMobileNav);
 
 // fermer en cliquant sur un lien à l'intérieur de la navigation mobile
-if (mobileNav) mobileNav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMobileNav); });
+if (mobileNav) mobileNav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeMobileNav);
+});
 
 // fermer avec la touche Échap (ESC)
-document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMobileNav(); });
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMobileNav();
+});
 
-function closeMobileNav(){
+function closeMobileNav() {
     if (!mobileNav) return;
     mobileNav.classList.remove('open');
     if (navOverlay) navOverlay.classList.remove('show');
-    mobileNav.setAttribute('aria-hidden','true');
-    if (navOverlay) navOverlay.setAttribute('aria-hidden','true');
-    if (boutonMenu) boutonMenu.setAttribute('aria-expanded','false');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    if (navOverlay) navOverlay.setAttribute('aria-hidden', 'true');
+    if (boutonMenu) boutonMenu.setAttribute('aria-expanded', 'false');
     // autoriser à nouveau le défilement de la page
     document.body.classList.remove('no-scroll');
     // restore focus to the element that opened the menu
-    try { if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus(); } catch(e){}
+    try {
+        if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+    } catch (e) {}
     // libérer le focus trap
     releaseFocus(mobileNav);
-    if(menuStatus) menuStatus.textContent = 'Menu fermé';
+    if (menuStatus) menuStatus.textContent = 'Menu fermé';
 }
 
 // Comportement du bouton de navigation rapide : apparaît quand l'en-tête n'est pas visible, effectue un scroll vers l'en-tête au clic
 var quickBtn = document.querySelector('.quick-nav-btn');
 var headerEl = document.querySelector('.site-header');
 var headerSentinel = document.getElementById('header-sentinel');
-if (quickBtn && headerEl){
+if (quickBtn && headerEl) {
     // observe header visibility
     var targetToObserve = headerSentinel || headerEl;
-    var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(ent){
-            if (!ent.isIntersecting){ quickBtn.classList.add('show-quick'); }
-            else { quickBtn.classList.remove('show-quick'); }
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(ent) {
+            if (!ent.isIntersecting) {
+                quickBtn.classList.add('show-quick');
+            } else {
+                quickBtn.classList.remove('show-quick');
+            }
         });
-    }, {root:null,threshold:0});
+    }, {
+        root: null,
+        threshold: 0
+    });
     io.observe(targetToObserve);
 
     // Fallback: if IntersectionObserver does not behave as expected on some devices,
     // Fallback : si IntersectionObserver ne se comporte pas comme prévu sur certains appareils,
     // utiliser la position de scroll : afficher le bouton quand on a défilé au-delà de la hauteur de l'en-tête.
-    function updateQuickVisibilityByScroll(){
-        try{
+    function updateQuickVisibilityByScroll() {
+        try {
             var threshold = headerEl.offsetHeight || 120;
-            if(window.scrollY > threshold){ quickBtn.classList.add('show-quick'); }
-            else { quickBtn.classList.remove('show-quick'); }
-        }catch(e){}
+            if (window.scrollY > threshold) {
+                quickBtn.classList.add('show-quick');
+            } else {
+                quickBtn.classList.remove('show-quick');
+            }
+        } catch (e) {}
     }
-    window.addEventListener('scroll', updateQuickVisibilityByScroll, {passive:true});
+    window.addEventListener('scroll', updateQuickVisibilityByScroll, {
+        passive: true
+    });
     // initial check
     updateQuickVisibilityByScroll();
 
-    quickBtn.addEventListener('click', function(){
+    quickBtn.addEventListener('click', function() {
         // faire un scroll fluide jusqu'au tout début de la page (top: 0)
-        try{
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }catch(e){
+        try {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } catch (e) {
             // fallback si scrollTo avec options non supporté
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
         }
         // après un court délai, donner le focus au bouton hamburger pour accessibilité
-        setTimeout(function(){ try{ if (boutonMenu && typeof boutonMenu.focus === 'function') boutonMenu.focus(); }catch(e){} }, 600);
+        setTimeout(function() {
+            try {
+                if (boutonMenu && typeof boutonMenu.focus === 'function') boutonMenu.focus();
+            } catch (e) {}
+        }, 600);
     });
     // when menu is closed elsewhere, ensure quickBtn aria state is reset
-    document.addEventListener('menuClosed', function(){ if (quickBtn) quickBtn.setAttribute('aria-expanded','false'); });
+    document.addEventListener('menuClosed', function() {
+        if (quickBtn) quickBtn.setAttribute('aria-expanded', 'false');
+    });
 }
 
 // Implémentation du défilement fluide pour les liens internes
